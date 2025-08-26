@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Socomec: Digital Strategy for Turkish Market Entry</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9fa;
+      }
+      .chart-container {
+        position: relative;
+        width: 100%;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 320px;
+        max-height: 400px;
+      }
+      @media (min-width: 768px) {
+        .chart-container {
+          height: 400px;
+        }
+      }
+      .kpi-card {
+        background-color: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+          0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        padding: 1.5rem;
+        text-align: center;
+        border-left: 8px solid #ff4e50;
+      }
+      .kpi-value {
+        font-size: 4rem;
+        font-weight: 900;
+        color: #ff4e50;
+        line-height: 1;
+      }
+      .kpi-label {
+        font-size: 1.125rem;
+        color: #4a5568;
+        margin-top: 0.5rem;
+      }
+      .flow-step {
+        background-color: #ffffff;
+        border: 2px solid #fc913a;
+        color: #1a202c;
+        padding: 1rem;
+        border-radius: 0.5rem;
+        text-align: center;
+        font-weight: 600;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1),
+          0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        transition: transform 0.2s;
+      }
+      .flow-step:hover {
+        transform: translateY(-5px);
+      }
+      .flow-arrow {
+        color: #fc913a;
+        font-size: 2rem;
+        font-weight: bold;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .timeline-item {
+        position: relative;
+        padding-bottom: 2.5rem;
+        padding-left: 2.5rem;
+        border-left: 4px solid #f9d423;
+      }
+      .timeline-dot {
+        position: absolute;
+        left: -12px;
+        top: 0;
+        height: 20px;
+        width: 20px;
+        border-radius: 50%;
+        background-color: #f9d423;
+        border: 4px solid #f8f9fa;
+      }
+      .card-header {
+        font-size: 1.5rem;
+        font-weight: 700;
+        color: #2d3748;
+        margin-bottom: 1rem;
+        padding-bottom: 0.5rem;
+        border-bottom: 2px solid #e2e8f0;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-50 text-gray-800">
+    <div class="container mx-auto p-4 md:p-8">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl md:text-5xl font-extrabold text-gray-900 mb-2">
+          Socomec's Digital Expansion into Turkey
+        </h1>
+        <p class="text-lg md:text-xl text-gray-600">
+          A Visual Guide to Market Entry and Growth Strategy
+        </p>
+      </header>
+
+      <main class="space-y-12">
+        <section
+          id="market-opportunity"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-8"
+        >
+          <h2 class="card-header">Turkey's Digital Commerce Explosion</h2>
+          <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">
+            Turkey's e-commerce landscape is experiencing phenomenal growth,
+            creating a fertile ground for Socomec's digital-first strategy. The
+            electrical and electronics sector represents a massive slice of this
+            digital pie, signaling a clear and immediate opportunity.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="kpi-card">
+              <div class="kpi-value">$89B</div>
+              <div class="kpi-label">Turkish E-Commerce Market in 2024</div>
+            </div>
+            <div class="chart-container">
+              <canvas id="marketShareChart"></canvas>
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="competitive-landscape"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-8"
+        >
+          <h2 class="card-header">The Competitive Landscape</h2>
+          <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">
+            The Turkish low-voltage market is dominated by established global
+            players who have solidified their positions through extensive
+            distributor networks. Understanding their footprint is key to
+            carving out Socomec's niche as a premium European alternative.
+          </p>
+          <div class="chart-container mx-auto">
+            <canvas id="competitorChart"></canvas>
+          </div>
+        </section>
+
+        <section
+          id="purchasing-channels"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-8"
+        >
+          <h2 class="card-header">Mapping the Buyer's Journey</h2>
+          <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">
+            Turkish professionals procure low-voltage products through a hybrid
+            ecosystem of traditional distributors and modern e-commerce
+            platforms. A successful strategy must engage buyers across all these
+            critical touchpoints.
+          </p>
+          <div class="grid grid-cols-1 md:grid-cols-5 gap-4 items-center">
+            <div class="flow-step">Manufacturer (Socomec)</div>
+            <div class="flow-arrow hidden md:block">&rarr;</div>
+            <div
+              class="flow-step col-span-1 md:col-span-3 grid grid-cols-1 lg:grid-cols-2 gap-4 p-4 border-dashed border-2 border-gray-300"
+            >
+              <div class="flow-step">
+                B2B Distributor Portals (e.g., Metro Elektrik)
+              </div>
+              <div class="flow-step">
+                Major E-Commerce Platforms (Trendyol, Hepsiburada)
+              </div>
+            </div>
+            <div class="flow-arrow hidden md:block">&rarr;</div>
+            <div class="flow-step">End-User (Contractors, Industrials)</div>
+          </div>
+        </section>
+
+        <section
+          id="digital-battleground"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-8"
+        >
+          <h2 class="card-header">
+            The Digital Battleground: Where Professionals Engage
+          </h2>
+          <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">
+            Social media in Turkey is not just for consumers; it's a vital B2B
+            tool for building trust and credibility. A multi-platform approach
+            is essential to connect with decision-makers and technical
+            professionals where they are most active.
+          </p>
+          <div class="chart-container mx-auto">
+            <canvas id="socialMediaChart"></canvas>
+          </div>
+        </section>
+
+        <section
+          id="strategic-blueprint"
+          class="bg-white rounded-lg shadow-lg p-6 md:p-8"
+        >
+          <h2 class="card-header">Socomec's Phased E-Commerce Rollout</h2>
+          <p class="text-gray-600 mb-8 text-center max-w-3xl mx-auto">
+            A strategic, phased approach to e-commerce will maximize impact
+            while minimizing channel conflict. The plan prioritizes empowering
+            distributor partners first, building a strong foundation before
+            expanding to broader consumer-facing marketplaces.
+          </p>
+          <div class="relative">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-xl font-bold text-gray-800">
+                Phase 1: Distributor-Led E-Commerce (Months 0-6)
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Empower 2-3 key distributors with a complete digital package to
+                leverage their existing platforms and customer base for rapid
+                market penetration.
+              </p>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <h3 class="text-xl font-bold text-gray-800">
+                Phase 2: Launch Socomec B2B Portal (Months 6-12)
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Introduce a dedicated, password-protected portal for partners,
+                providing real-time inventory, ordering, and exclusive marketing
+                assets to strengthen the ecosystem.
+              </p>
+            </div>
+            <div class="timeline-item border-l-transparent">
+              <div class="timeline-dot"></div>
+              <h3 class="text-xl font-bold text-gray-800">
+                Phase 3: Selective B2C Marketplace Presence (Month 12+)
+              </h3>
+              <p class="text-gray-600 mt-2">
+                Strategically list curated products on platforms like
+                Hepsiburada and Trendyol to build broad brand awareness and
+                capture the "prosumer" market segment.
+              </p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <footer class="text-center mt-12 py-6 border-t border-gray-200">
+        <p class="text-gray-500">
+          Socomec Turkey Digital Strategy Infographic | Data-Driven Market Entry
+        </p>
+      </footer>
+    </div>
+
+    <script>
+      const wrapLabel = (label, maxLength = 16) => {
+        if (label.length <= maxLength) {
+          return label;
+        }
+        const words = label.split(" ");
+        const lines = [];
+        let currentLine = "";
+        words.forEach((word) => {
+          if ((currentLine + " " + word).trim().length > maxLength) {
+            lines.push(currentLine.trim());
+            currentLine = word;
+          } else {
+            currentLine = (currentLine + " " + word).trim();
+          }
+        });
+        if (currentLine) {
+          lines.push(currentLine.trim());
+        }
+        return lines;
+      };
+
+      const tooltipTitleCallback = (tooltipItems) => {
+        const item = tooltipItems[0];
+        let label = item.chart.data.labels[item.dataIndex];
+        if (Array.isArray(label)) {
+          return label.join(" ");
+        } else {
+          return label;
+        }
+      };
+
+      const chartColors = {
+        primary: "#FF4E50",
+        secondary: "#FC913A",
+        tertiary: "#F9D423",
+        accent: "#EDE574",
+        light: "#E1F5C4",
+        gray: "#A0AEC0",
+      };
+
+      const defaultChartOptions = {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: "bottom",
+            labels: {
+              color: "#4A5568",
+              font: {
+                family: "'Inter', sans-serif",
+                size: 14,
+              },
+            },
+          },
+          tooltip: {
+            callbacks: {
+              title: tooltipTitleCallback,
+            },
+            backgroundColor: "#2D3748",
+            titleFont: {
+              size: 16,
+              family: "'Inter', sans-serif",
+            },
+            bodyFont: {
+              size: 14,
+              family: "'Inter', sans-serif",
+            },
+            padding: 12,
+            cornerRadius: 6,
+          },
+        },
+        scales: {
+          x: {
+            ticks: {
+              color: "#718096",
+              font: {
+                family: "'Inter', sans-serif",
+              },
+            },
+            grid: {
+              display: false,
+            },
+          },
+          y: {
+            ticks: {
+              color: "#718096",
+              font: {
+                family: "'Inter', sans-serif",
+              },
+            },
+            grid: {
+              color: "#E2E8F0",
+            },
+          },
+        },
+      };
+
+      const marketShareCtx = document
+        .getElementById("marketShareChart")
+        .getContext("2d");
+      new Chart(marketShareCtx, {
+        type: "doughnut",
+        data: {
+          labels: ["Electrical & Electronics", "Other Categories"],
+          datasets: [
+            {
+              label: "Market Share",
+              data: [42.3, 57.7],
+              backgroundColor: [chartColors.primary, chartColors.gray],
+              borderColor: "#FFFFFF",
+              borderWidth: 4,
+            },
+          ],
+        },
+        options: {
+          ...defaultChartOptions,
+          cutout: "70%",
+          plugins: {
+            ...defaultChartOptions.plugins,
+            legend: {
+              display: true,
+              position: "bottom",
+            },
+          },
+        },
+      });
+
+      const competitorCtx = document
+        .getElementById("competitorChart")
+        .getContext("2d");
+      new Chart(competitorCtx, {
+        type: "bar",
+        data: {
+          labels: [
+            wrapLabel("Schneider Electric (via Metro, Vekmar)"),
+            wrapLabel("ABB (via Metro, Vekmar)"),
+            wrapLabel("Siemens"),
+            wrapLabel("Eaton (via Vekmar)"),
+            wrapLabel("Legrand (via Vekmar)"),
+            wrapLabel("Phoenix Contact (via Metro)"),
+          ],
+          datasets: [
+            {
+              label: "Market Presence via Key Distributors",
+              data: [95, 90, 85, 75, 70, 65],
+              backgroundColor: [
+                chartColors.primary,
+                chartColors.secondary,
+                chartColors.tertiary,
+                chartColors.accent,
+                chartColors.light,
+                chartColors.gray,
+              ],
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          ...defaultChartOptions,
+          indexAxis: "y",
+          plugins: {
+            ...defaultChartOptions.plugins,
+            legend: {
+              display: false,
+            },
+          },
+          scales: {
+            y: {
+              ticks: {
+                color: "#4A5568",
+                font: {
+                  size: 12,
+                },
+              },
+            },
+          },
+        },
+      });
+
+      const socialMediaCtx = document
+        .getElementById("socialMediaChart")
+        .getContext("2d");
+      new Chart(socialMediaCtx, {
+        type: "bar",
+        data: {
+          labels: [
+            "LinkedIn",
+            "Instagram",
+            "YouTube",
+            "Forums (EMO, Projelerim)",
+          ],
+          datasets: [
+            {
+              label: "Importance for B2B Engagement",
+              data: [90, 75, 70, 60],
+              backgroundColor: [
+                chartColors.primary,
+                chartColors.secondary,
+                chartColors.tertiary,
+                chartColors.accent,
+              ],
+              borderRadius: 6,
+            },
+          ],
+        },
+        options: {
+          ...defaultChartOptions,
+          plugins: {
+            ...defaultChartOptions.plugins,
+            legend: {
+              display: false,
+            },
+          },
+        },
+      });
+    </script>
+  </body>
+</html>
